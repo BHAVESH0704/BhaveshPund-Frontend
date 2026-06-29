@@ -1,0 +1,243 @@
+/* =========================================
+   PROJECTS SECTION
+========================================= */
+
+.projects {
+  padding: 120px 10%;
+  background: #0f172a;
+}
+
+.projects .section-heading {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.projects .section-heading p {
+  color: #3b82f6;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.projects .section-heading h2 {
+  font-size: 3rem;
+  color: #ffffff;
+}
+
+/* =========================================
+   PROJECT ROW
+========================================= */
+
+.project-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+
+  margin-bottom: 120px;
+}
+
+.project-row.reverse {
+  flex-direction: row-reverse;
+}
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.project-image {
+  flex: 1;
+}
+
+.project-image img {
+  width: 100%;
+  border-radius: 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
+
+  transition: .4s ease;
+}
+
+.project-image img:hover {
+  transform: translateY(-10px) scale(1.02);
+
+  box-shadow: 0 35px 70px rgba(59,130,246,.18);
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.project-info {
+  flex: 1;
+}
+
+.project-info span:first-child {
+  display: inline-block;
+
+  color: #3b82f6;
+
+  font-weight: 600;
+
+  margin-bottom: 15px;
+
+  letter-spacing: 1px;
+}
+
+.project-info h3 {
+  font-size: 2.4rem;
+
+  color: white;
+
+  margin-bottom: 20px;
+}
+
+.project-info p {
+  color: #cbd5e1;
+
+  line-height: 1.9;
+
+  margin-bottom: 35px;
+}
+
+/* =========================================
+   TECH STACK
+========================================= */
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-bottom: 35px;
+}
+
+.project-tech span {
+  padding: 10px 18px;
+
+  background: #111827;
+
+  border: 1px solid rgba(255,255,255,.06);
+
+  border-radius: 30px;
+
+  color: #e2e8f0;
+
+  transition: .3s ease;
+}
+
+.project-tech span:hover {
+  background: #3b82f6;
+
+  border-color: #3b82f6;
+
+  transform: translateY(-3px);
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.project-info a {
+  display: inline-block;
+
+  color: white;
+
+  background: linear-gradient(
+    135deg,
+    #3b82f6,
+    #2563eb
+  );
+
+  padding: 14px 28px;
+
+  border-radius: 10px;
+
+  font-weight: 600;
+
+  transition: .3s ease;
+}
+
+.project-info a:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 15px 35px rgba(59,130,246,.35);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 992px) {
+
+  .project-row,
+  .project-row.reverse {
+
+    flex-direction: column;
+
+    text-align: center;
+
+    gap: 40px;
+  }
+
+  .project-tech {
+
+    justify-content: center;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .projects {
+
+    padding: 90px 8%;
+  }
+
+  .projects .section-heading h2 {
+
+    font-size: 2.3rem;
+  }
+
+  .project-info h3 {
+
+    font-size: 2rem;
+  }
+
+}
+
+@media (max-width: 576px) {
+
+  .projects {
+
+    padding: 80px 6%;
+  }
+
+  .project-info h3 {
+
+    font-size: 1.8rem;
+  }
+
+  .project-info p {
+
+    font-size: .95rem;
+  }
+
+  .project-tech span {
+
+    font-size: .9rem;
+
+    padding: 8px 14px;
+  }
+
+  .project-info a {
+
+    width: 100%;
+
+    text-align: center;
+  }
+
+}
