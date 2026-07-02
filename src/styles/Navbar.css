@@ -1,11 +1,8 @@
 :root{
   --primary:#3b82f6;
   --primary-light:#60a5fa;
-
   --bg:#08111f;
-
   --white:#f8fafc;
-
   --text:#cbd5e1;
 }
 
@@ -54,7 +51,6 @@
     border:1px solid rgba(255,255,255,.08);
 
     box-shadow:
-
     0 10px 40px rgba(0,0,0,.35);
 
 }
@@ -65,29 +61,33 @@
 
 .logo{
 
-    font-size:1.8rem;
+    display:flex;
 
-    font-weight:700;
+    align-items:center;
 
-    color:white;
+    justify-content:center;
 
     cursor:pointer;
-
-    transition:.3s;
 
     user-select:none;
 
 }
 
-.logo span{
+.logo img{
 
-    color:var(--primary);
+    width:60px;
+
+    height:60px;
+
+    object-fit:contain;
+
+    transition:.3s;
 
 }
 
-.logo:hover{
+.logo img:hover{
 
-    color:var(--primary);
+    transform:scale(1.08);
 
 }
 
@@ -192,7 +192,6 @@
     transition:.3s;
 
     box-shadow:
-
     0 12px 30px rgba(59,130,246,.25);
 
 }
@@ -202,7 +201,6 @@
     transform:translateY(-3px);
 
     box-shadow:
-
     0 18px 40px rgba(59,130,246,.35);
 
 }
@@ -228,6 +226,14 @@ gap:18px;
 .resume-btn{
 
 display:none;
+
+}
+
+.logo img{
+
+width:55px;
+
+height:55px;
 
 }
 
@@ -259,9 +265,11 @@ gap:16px;
 
 }
 
-.logo{
+.logo img{
 
-font-size:1.6rem;
+width:40px;
+
+height:50px;
 
 }
 
@@ -272,6 +280,14 @@ font-size:1.6rem;
 .navbar li{
 
 font-size:.9rem;
+
+}
+
+.logo img{
+
+width:45px;
+
+height:45px;
 
 }
 

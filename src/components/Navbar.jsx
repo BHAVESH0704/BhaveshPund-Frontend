@@ -38,19 +38,15 @@ function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     handleScroll();
 
-    return () =>
-      window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollTo = (id) => {
-    document
-      .getElementById(id)
-      ?.scrollIntoView({
-        behavior: "smooth",
-      });
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -60,31 +56,28 @@ function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <h2
+      {/* Logo */}
+      <div
         className="logo"
         onClick={() => scrollTo("home")}
       >
-        BP<span>.</span>
-      </h2>
+        <img src="/logo.png" alt="Bhavesh Logo" />
+      </div>
 
+      {/* Navigation Links */}
       <ul>
-
         {links.map((item) => (
-
           <li
             key={item.id}
             onClick={() => scrollTo(item.id)}
-            className={
-              active === item.id ? "active" : ""
-            }
+            className={active === item.id ? "active" : ""}
           >
             {item.label}
           </li>
-
         ))}
-
       </ul>
 
+      {/* Resume Button */}
       <a
         href="/Bhavesh_Pund_Resume.pdf"
         download
