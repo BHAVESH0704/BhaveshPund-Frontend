@@ -1,9 +1,42 @@
 import "../styles/Contact.css";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+import { getContact } from "../api/contactApi";
 
 function Contact() {
+
+  const [contact, setContact] = useState(null);
+
+  useEffect(() => {
+
+    const loadContact = async () => {
+
+      try {
+
+        const data = await getContact();
+        setContact(data);
+
+      } catch (error) {
+
+        console.error("Failed to load contact details:", error);
+
+      }
+
+    };
+
+    loadContact();
+
+  }, []);
+
+  if (!contact) {
+    return null;
+  }
+
   return (
+
     <section className="contact" id="contact">
+
       <div className="container">
 
         <motion.div
@@ -13,6 +46,7 @@ function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
+
           <p>CONTACT</p>
 
           <h2>
@@ -24,60 +58,67 @@ function Contact() {
             Embedded Systems, AI, Full Stack Development and
             opportunities to build meaningful technology.
           </p>
+
         </motion.div>
 
         <div className="contact-grid">
 
           <motion.a
-            href="mailto:pundbhavesh@gmail.com"
+            href={`mailto:${contact.email}`}
             className="contact-card glass-card"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ delay: 0.1 }}
             whileHover={{ y: -10, scale: 1.03 }}
           >
+
             <div className="contact-icon">📧</div>
 
             <h3>Email</h3>
 
-            <p>pundbhavesh@gmail.com</p>
+            <p>{contact.email}</p>
+
           </motion.a>
 
           <motion.a
-            href="https://www.linkedin.com/in/bhaveshpund"
+            href={contact.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="contact-card glass-card"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ delay: 0.2 }}
             whileHover={{ y: -10, scale: 1.03 }}
           >
+
             <div className="contact-icon">💼</div>
 
             <h3>LinkedIn</h3>
 
-            <p>linkedin.com/in/bhaveshpund</p>
+            <p>Connect with me</p>
+
           </motion.a>
 
           <motion.a
-            href="https://github.com/BHAVESH0704"
+            href={contact.github}
             target="_blank"
             rel="noopener noreferrer"
             className="contact-card glass-card"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ delay: 0.3 }}
             whileHover={{ y: -10, scale: 1.03 }}
           >
+
             <div className="contact-icon">💻</div>
 
             <h3>GitHub</h3>
 
-            <p>github.com/BHAVESH0704</p>
+            <p>View Projects</p>
+
           </motion.a>
 
           <motion.a
@@ -87,14 +128,16 @@ function Contact() {
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ delay: 0.4 }}
             whileHover={{ y: -10, scale: 1.03 }}
           >
+
             <div className="contact-icon">📄</div>
 
             <h3>Resume</h3>
 
             <p>Download Resume</p>
+
           </motion.a>
 
         </div>
@@ -104,14 +147,17 @@ function Contact() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ delay: 0.5 }}
         >
-          📍 Pune, Maharashtra, India
+          📍 {contact.location}
         </motion.div>
 
       </div>
+
     </section>
+
   );
+
 }
 
 export default Contact;

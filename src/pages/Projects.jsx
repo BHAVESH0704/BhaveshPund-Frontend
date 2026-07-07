@@ -1,42 +1,69 @@
 import "../styles/Projects.css";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+import { getProjects } from "../api/projectApi";
 
 import expenseTracker from "../images/expense-tracker.png";
 import homeAutomation from "../images/home-automation.png";
 import sentimentAnalysis from "../images/sentiment-analysis.png";
-
-const projects = [
-  {
-    title: "Expense Tracker",
-    year: "2025",
-    description:
-      "Desktop application developed using Python, SQLite and Matplotlib for tracking daily expenses with insightful visualizations.",
-    tech: ["Python", "SQLite", "Matplotlib"],
-    image: expenseTracker,
-    github: "https://github.com/BHAVESH0704",
-  },
-  {
-    title: "Bluetooth Home Automation",
-    year: "2024",
-    description:
-      "Arduino-based home automation system controlled through an Android application using Bluetooth communication.",
-    tech: ["Arduino", "HC-05", "Relay Module"],
-    image: homeAutomation,
-    github: "https://github.com/BHAVESH0704",
-  },
-  {
-    title: "Sentiment Analysis",
-    year: "2025",
-    description:
-      "AI-powered sentiment analysis using Transformers and Streamlit for real-time text classification.",
-    tech: ["Python", "Transformers", "Streamlit"],
-    image: sentimentAnalysis,
-    github: "https://github.com/BHAVESH0704",
-  },
-];
+import solarCharge from "../images/solarcharge.png";
+import chahawaleMama from "../images/chaha.png";
 
 function Projects() {
+
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+
+    const loadProjects = async () => {
+
+      try {
+
+        const data = await getProjects();
+
+        setProjects(data);
+
+      } catch (error) {
+
+        console.error("Failed to load projects:", error);
+
+      }
+
+    };
+
+    loadProjects();
+
+  }, []);
+
+  const getImage = (imageUrl) => {
+
+    switch (imageUrl) {
+
+      case "/images/expense-tracker.png":
+        return expenseTracker;
+
+      case "/images/home-automation.png":
+        return homeAutomation;
+
+      case "/images/solarcharge.png":
+        return solarCharge;
+
+      case "/images/chaha.png":
+        return chahawaleMama;
+
+      case "/images/sentiment-analysis.png":
+        return sentimentAnalysis;
+
+      default:
+        return expenseTracker;
+
+    }
+
+  };
+
   return (
+
     <section className="projects" id="projects">
 
       <motion.div
@@ -46,9 +73,11 @@ function Projects() {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
+
         <p>PROJECTS</p>
 
         <h2>Engineering Portfolio</h2>
+
       </motion.div>
 
       {projects.map((project, index) => (
@@ -73,14 +102,14 @@ function Projects() {
 
           <motion.div
             className="project-image"
-            whileHover={{
-              scale: 1.03,
-            }}
+            whileHover={{ scale: 1.03 }}
           >
+
             <img
-              src={project.image}
+              src={getImage(project.imageUrl)}
               alt={project.title}
             />
+
           </motion.div>
 
           <div className="project-info">
@@ -93,28 +122,26 @@ function Projects() {
 
             <div className="project-tech">
 
-              {project.tech.map((item) => (
+              {project.technologies
+                .split(",")
+                .map((tech) => (
 
-                <motion.span
-                  key={item}
-                  whileHover={{
-                    scale: 1.08,
-                  }}
-                >
-                  {item}
-                </motion.span>
+                  <motion.span
+                    key={tech}
+                    whileHover={{ scale: 1.08 }}
+                  >
+                    {tech.trim()}
+                  </motion.span>
 
-              ))}
+                ))}
 
             </div>
 
             <motion.a
-              href={project.github}
+              href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{
-                x: 6,
-              }}
+              whileHover={{ x: 6 }}
             >
               View Project →
             </motion.a>
@@ -126,7 +153,9 @@ function Projects() {
       ))}
 
     </section>
+
   );
+
 }
 
 export default Projects;

@@ -9,21 +9,23 @@ const publications = [
     description:
       "Published in the International Journal of Creative Research Thoughts (IJCRT). The paper presents the design and implementation of a solar-powered EV charging station integrated with remote monitoring capabilities.",
     tags: ["Solar Energy", "IoT", "Embedded Systems", "EV Charging"],
-    link: "#",
+    published: true,
+    link: "/IJCRT26A4372.pdf",
   },
   {
-    type: "Scopus Indexed",
+    type: "Scopus Indexed • Accepted",
     title:
       "An Intelligent Solar-Powered EV Charging Station with Remote Supervisory Interface",
     description:
-      "Research focused on intelligent monitoring, battery management and renewable energy integration for smart electric vehicle charging infrastructure.",
+      "Accepted for presentation. The publication process is currently underway and the final paper will be available after publication.",
     tags: [
       "Research",
       "Renewable Energy",
       "Battery Management",
       "Monitoring",
     ],
-    link: "#",
+    published: false,
+    link: "",
   },
 ];
 
@@ -57,14 +59,8 @@ function Publications() {
           <motion.div
             key={paper.title}
             className="publication-card"
-            initial={{
-              opacity: 0,
-              y: 60,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{
               duration: 0.7,
@@ -90,9 +86,7 @@ function Publications() {
 
                 <motion.span
                   key={tag}
-                  whileHover={{
-                    scale: 1.08,
-                  }}
+                  whileHover={{ scale: 1.08 }}
                 >
                   {tag}
                 </motion.span>
@@ -101,15 +95,25 @@ function Publications() {
 
             </div>
 
-            <motion.a
-              href={paper.link}
-              className="publication-btn"
-              whileHover={{
-                x: 6,
-              }}
-            >
-              Read Paper →
-            </motion.a>
+            {paper.published ? (
+
+              <motion.a
+                href={paper.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="publication-btn"
+                whileHover={{ x: 6 }}
+              >
+                Read Paper →
+              </motion.a>
+
+            ) : (
+
+              <span className="publication-btn disabled">
+                Publication Pending
+              </span>
+
+            )}
 
           </motion.div>
 

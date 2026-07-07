@@ -1,66 +1,48 @@
 import "../styles/Skills.css";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-const skills = [
-  {
-    title: "Frontend",
-    technologies: [
-      "React",
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "TypeScript",
-    ],
-  },
-  {
-    title: "Backend",
-    technologies: [
-      "Java",
-      "Spring Boot",
-      "REST API",
-      "Python",
-    ],
-  },
-  {
-    title: "Database",
-    technologies: [
-      "MySQL",
-      "MongoDB",
-      "Firebase",
-      "SQLite",
-    ],
-  },
-  {
-    title: "Systems",
-    technologies: [
-      "Linux",
-      "Git & GitHub",
-      "Networking",
-      "Docker",
-    ],
-  },
-  {
-    title: "Embedded",
-    technologies: [
-      "Arduino",
-      "Raspberry Pi Pico W",
-      "IoT",
-      "Electronics",
-    ],
-  },
-  {
-    title: "Tools",
-    technologies: [
-      "VS Code",
-      "IntelliJ IDEA",
-      "Postman",
-      "Power BI",
-    ],
-  },
-];
+import { getSkills } from "../api/skillApi";
 
 function Skills() {
+
+  const [skills, setSkills] = useState([]);
+
+  useEffect(() => {
+
+    const loadSkills = async () => {
+
+      try {
+
+        const data = await getSkills();
+        setSkills(data);
+
+      } catch (error) {
+
+        console.error("Failed to load skills:", error);
+
+      }
+
+    };
+
+    loadSkills();
+
+  }, []);
+
+  const groupedSkills = skills.reduce((groups, skill) => {
+
+    if (!groups[skill.category]) {
+      groups[skill.category] = [];
+    }
+
+    groups[skill.category].push(skill.name);
+
+    return groups;
+
+  }, {});
+
   return (
+
     <section className="skills" id="skills">
 
       <div className="skills-container">
@@ -101,10 +83,10 @@ function Skills() {
 
         <div className="skills-grid">
 
-          {skills.map((category, index) => (
+          {Object.entries(groupedSkills).map(([category, technologies], index) => (
 
             <motion.div
-              key={category.title}
+              key={category}
               className="skill-card"
               initial={{
                 opacity: 0,
@@ -125,11 +107,11 @@ function Skills() {
               }}
             >
 
-              <h3>{category.title}</h3>
+              <h3>{category}</h3>
 
               <ul>
 
-                {category.technologies.map((tech) => (
+                {technologies.map((tech) => (
 
                   <motion.li
                     key={tech}
@@ -154,7 +136,9 @@ function Skills() {
       </div>
 
     </section>
+
   );
+
 }
 
 export default Skills;

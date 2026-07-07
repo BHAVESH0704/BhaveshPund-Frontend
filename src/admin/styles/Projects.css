@@ -1,0 +1,125 @@
+.admin-page{
+
+    min-height:100vh;
+
+    background:#08111f;
+
+    color:white;
+
+    padding:50px;
+
+}
+
+.admin-page h1{
+
+    margin-bottom:40px;
+
+}
+
+.project-form{
+
+    display:grid;
+
+    gap:15px;
+
+    margin-bottom:50px;
+
+}
+
+.project-form input,
+
+.project-form textarea{
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#1e293b;
+
+    color:white;
+
+}
+
+.project-form textarea{
+
+    min-height:120px;
+
+    resize:vertical;
+
+}
+
+.project-form button{
+
+    width:180px;
+
+    padding:14px;
+
+    background:#3b82f6;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.project-list{
+
+    display:grid;
+
+    gap:20px;
+
+}
+
+.project-item{
+
+    background:#0f172a;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.project-actions{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.edit-btn{
+
+    background:#2563eb;
+
+}
+
+.delete-btn{
+
+    background:#dc2626;
+
+}
+
+.project-actions button{
+
+    border:none;
+
+    color:white;
+
+    padding:10px 20px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}

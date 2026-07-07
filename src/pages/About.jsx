@@ -1,8 +1,39 @@
 import "../styles/About.css";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+import { getAbout } from "../api/aboutApi";
 
 function About() {
+
+  const [about, setAbout] = useState(null);
+
+  useEffect(() => {
+
+    const loadAbout = async () => {
+
+      try {
+
+        const data = await getAbout();
+
+        setAbout(data);
+
+      } catch (error) {
+
+        console.error("Failed to load about:", error);
+
+      }
+
+    };
+
+    loadAbout();
+
+  }, []);
+
+  if (!about) return null;
+
   return (
+
     <section className="about" id="about">
 
       <div className="about-container">
@@ -34,10 +65,10 @@ function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          Curiosity has always been the driving force behind my
-          journey. Every programming language, framework and
-          technology I've learned started with one simple question:
-          <strong> "How does this work?"</strong>
+          <strong>{about.name}</strong> is a{" "}
+          <strong>{about.role}</strong> pursuing{" "}
+          <strong>{about.degree}</strong> at{" "}
+          <strong>{about.college}</strong>.
         </motion.p>
 
         <motion.p
@@ -47,7 +78,8 @@ function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.35 }}
         >
-          Today I develop Java applications, full-stack web
+          Curiosity has always been the driving force behind my
+          journey. Today I develop Java applications, full-stack web
           solutions and embedded systems while continuously
           expanding my knowledge in Linux, networking,
           cloud computing and artificial intelligence.
@@ -61,10 +93,7 @@ function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            whileHover={{
-              y: -10,
-              scale: 1.03,
-            }}
+            whileHover={{ y: -10, scale: 1.03 }}
           >
             <h3>💻 Software</h3>
 
@@ -81,15 +110,12 @@ function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            whileHover={{
-              y: -10,
-              scale: 1.03,
-            }}
+            whileHover={{ y: -10, scale: 1.03 }}
           >
             <h3>⚡ Embedded</h3>
 
             <p>
-              Arduino, Raspberry Pi,
+              Arduino, Raspberry Pi Pico W,
               IoT and electronics projects.
             </p>
 
@@ -101,16 +127,13 @@ function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.45 }}
-            whileHover={{
-              y: -10,
-              scale: 1.03,
-            }}
+            whileHover={{ y: -10, scale: 1.03 }}
           >
             <h3>🌐 Systems</h3>
 
             <p>
-              Linux, networking,
-              DevOps fundamentals and cloud.
+              Linux, Networking,
+              Docker and Cloud Computing.
             </p>
 
           </motion.div>
@@ -120,7 +143,9 @@ function About() {
       </div>
 
     </section>
+
   );
+
 }
 
 export default About;
