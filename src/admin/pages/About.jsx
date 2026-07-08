@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 import AdminLayout from "../components/AdminLayout";
 import "../styles/About.css";
@@ -60,7 +61,7 @@ function About() {
 
             await updateAbout(form);
 
-            alert("About information updated successfully.");
+           toast.success("About information updated successfully.");
 
         } catch (error) {
 

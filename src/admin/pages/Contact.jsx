@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 
 import AdminLayout from "../components/AdminLayout";
@@ -59,7 +60,7 @@ function Contact() {
 
             await updateContact(form);
 
-            alert("Contact information updated successfully.");
+           toast.success("Contact information updated successfully.");
 
         } catch (error) {
 

@@ -1,6 +1,7 @@
 import "../styles/Projects.css";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
 
 import { getProjects } from "../api/projectApi";
 
@@ -13,10 +14,13 @@ import chahawaleMama from "../images/chaha.png";
 function Projects() {
 
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 
     const loadProjects = async () => {
+
+      setLoading(true);
 
       try {
 
@@ -26,7 +30,11 @@ function Projects() {
 
       } catch (error) {
 
-        console.error("Failed to load projects:", error);
+        console.error(error);
+
+      } finally {
+
+        setLoading(false);
 
       }
 
@@ -61,6 +69,12 @@ function Projects() {
     }
 
   };
+
+  if (loading) {
+
+    return <Loading />;
+
+  }
 
   return (
 
