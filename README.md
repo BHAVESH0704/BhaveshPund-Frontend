@@ -181,7 +181,8 @@ The application is fully responsive and optimized for:
 
 # 📷 Screenshots
 
-> Add screenshots of your portfolio homepage, projects section, and admin dashboard here.
+<img width="1917" height="978" alt="image" src="https://github.com/user-attachments/assets/7868f5f8-c489-4ed0-8b95-c21e3148bb01" />
+
 
 ---
 
@@ -195,10 +196,10 @@ Aspiring Full Stack Java Developer
 
 📍 Pune, Maharashtra, India
 
-📧 Email: **bhaveshpund04@gmail.com**
+📧 Email: **pundbhavesh@gmail.com**
 
 🔗 LinkedIn  
-https://www.linkedin.com/in/bhavesh-pund/
+https://www.linkedin.com/in/bhaveshpund/
 
 💻 GitHub  
 https://github.com/BHAVESH0704
