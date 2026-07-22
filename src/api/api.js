@@ -1,15 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-
-    baseURL: "https://bhaveshpund-backend-production.up.railway.app/api/v1",
+    baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api/v1",
 
     headers: {
-
         "Content-Type": "application/json",
-
     },
-
 });
 
 api.interceptors.request.use((config) => {
@@ -17,13 +13,10 @@ api.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
 
     if (token) {
-
         config.headers.Authorization = `Bearer ${token}`;
-
     }
 
     return config;
-
 });
 
 api.interceptors.response.use(
@@ -37,11 +30,9 @@ api.interceptors.response.use(
             localStorage.removeItem("token");
 
             window.location.href = "/admin/login";
-
         }
 
         return Promise.reject(error);
-
     }
 
 );
